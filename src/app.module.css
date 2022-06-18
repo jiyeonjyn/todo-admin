@@ -1,0 +1,9 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+}
+
+.sideMenuSpace {
+  width: 50px;
+  height: 100%;
+}

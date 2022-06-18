@@ -1,0 +1,107 @@
+/* 햄버거 버튼 */
+.ico.ico-bars {
+  display: inline-block;
+  width: 30px;
+  height: 20px;
+  position: relative;
+  cursor: pointer;
+}
+.ico.ico-bars > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  border-radius: 1px;
+  background-color: white;
+  transition: top 0.2s, bottom 0.2s,
+    transform 0.3s cubic-bezier(0.585, -0.6, 0.43, 1.65), visibility 0s 0.3s;
+}
+
+.ico.ico-bars > div:nth-child(2) {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.ico.ico-bars > div:last-child {
+  top: auto;
+  bottom: 0;
+  transform-origin: bottom left;
+}
+
+.ico.ico-bars:hover div:first-child {
+  top: -2px;
+}
+
+.ico.ico-bars:hover div:last-child {
+  bottom: -2px;
+}
+
+.ico.ico-bars > div:first-child {
+  transform-origin: top left;
+}
+
+.ico.ico-bars.active div:first-child {
+  top: -2px;
+  transform: rotate(45deg);
+}
+
+.ico.ico-bars.active div:last-child {
+  bottom: -2px;
+  transform: rotate(-45deg);
+}
+
+.ico.ico-bars.active div:nth-child(2) {
+  visibility: hidden;
+  transition: visibility 0s 0s;
+}
+
+/* 사이드 바 */
+.side-bar {
+  z-index: 3;
+  user-select: none;
+  position: fixed;
+  top: 0;
+  left: 0px;
+  width: 50px;
+  height: 100%;
+  background-color: #7ac3cc;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 2px 2px;
+  transition: width 0.2s;
+  color: white;
+}
+
+.side-bar.active {
+  width: 200px;
+}
+
+.side-bar .toggle-side-bar-btn {
+  margin: 10px 0 0 10px;
+}
+
+.side-bar .menu {
+  position: absolute;
+  top: 50px;
+  right: 100%;
+  transition: right 0.3s;
+}
+
+.side-bar.active .menu {
+  /* 사이드바가 활성화 되면 메뉴가 노출 된다. */
+  left: 20%;
+}
+
+.side-bar .menu > ul > li > ul {
+  padding-left: 20px;
+}
+
+.side-bar .menu li > a {
+  display: block;
+  white-space: nowrap;
+  transition: color 0.5s;
+  padding: 5px;
+}
+
+.side-bar .menu li > a:hover {
+  color: black;
+}
