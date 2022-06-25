@@ -1,0 +1,67 @@
+@value neu-1, neu-2, white, purple, gray, black, red from '../../common/styles.css';
+
+.container {
+  background-color: neu-1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 1 0;
+  padding: 25px;
+}
+
+.title {
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 5;
+  color: black;
+}
+
+.input {
+  width: 350px;
+  height: 40px;
+  margin: 4px 0;
+  padding-left: 25px;
+  font-size: 13px;
+  letter-spacing: 0.15px;
+  border: 0;
+  font-family: 'Montserrat', sans-serif;
+  background-color: neu-1;
+  transition: 0.25s ease;
+  border-radius: 8px;
+  box-shadow: inset 2px 2px 4px neu-2, inset -2px -2px 4px white;
+}
+
+.input:focus {
+  box-shadow: inset 4px 4px 4px neu-2, inset -4px -4px 4px white;
+}
+
+.pwLink {
+  color: black;
+  font-size: 15px;
+  margin-top: 25px;
+  border-bottom: 1px solid gray;
+  line-height: 2;
+}
+
+.message {
+  font-size: 14px;
+  letter-spacing: 0.25px;
+  text-align: center;
+  line-height: 1.6;
+  color: red;
+}
+
+.button {
+  width: 180px;
+  height: 50px;
+  border-radius: 25px;
+  margin-top: 50px;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1.15px;
+  border: 0;
+  background-color: purple;
+  color: white;
+  box-shadow: 8px 8px 16px neu-2, -8px -8px 16px white;
+  cursor: pointer;
+}
