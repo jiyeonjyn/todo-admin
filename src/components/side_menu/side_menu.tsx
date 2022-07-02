@@ -1,8 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { logOut } from '../../service/auth_service';
 import styles from './side_menu.module.css';
 
 const SideMenu = () => {
+  const navigate = useNavigate();
+
   const [isActive, setIsActive] = useState(false);
   const toggleIsActive = () => setIsActive((prev) => !prev);
 
@@ -14,6 +17,11 @@ const SideMenu = () => {
     },
     [isActive]
   );
+
+  // const
+  const handleLogOut = async () => {
+    (await logOut()) && navigate('/');
+  };
 
   useEffect(() => {
     document.addEventListener('click', handleClickOutside);
@@ -38,21 +46,22 @@ const SideMenu = () => {
         <div></div>
         <div></div>
       </span>
-      <div className={styles.logo}>
-        <nav className={styles.menu}>
-          <ul>
-            <li>
-              <Link to="menu1">메뉴 1</Link>
-            </li>
-            <li>
-              <Link to="/">메뉴 2</Link>
-            </li>
-            <li>
-              <Link to="/">메뉴 3</Link>
-            </li>
-          </ul>
-        </nav>
-      </div>
+      <nav className={styles.menu}>
+        <ul>
+          <li>
+            <Link to="menu1">메뉴 1</Link>
+          </li>
+          <li>
+            <Link to="/">메뉴 2</Link>
+          </li>
+          <li>
+            <Link to="/">메뉴 3</Link>
+          </li>
+        </ul>
+      </nav>
+      <span className={styles.logOutBtn} onClick={handleLogOut}>
+        로그아웃
+      </span>
     </div>
   );
 };

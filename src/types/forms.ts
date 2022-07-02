@@ -1,9 +1,9 @@
-export type SignInUser = {
+export type UserSignInForm = {
   userId: string;
-  password: string;
+  userPw: string;
 };
 
-export type SignUpUser = {
+export type UserSignUpForm = {
   userId: string;
   userPw: string;
   userName: string;

@@ -1,5 +1,5 @@
-import { httpClient } from '../service/httpClient';
-import { RequestSignUpDto } from '../types/dto';
+import { httpClient } from '../../service/httpClient';
+import { RequestSignUpDto } from '../../types/dto';
 import { useMutation, UseMutationResult } from 'react-query';
 import { AxiosError, AxiosResponse } from 'axios';
 

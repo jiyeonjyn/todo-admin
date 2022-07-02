@@ -1,9 +1,15 @@
+@value neu-1 from 'common/styles.css';
+
 .container {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #ecf0f3;
+  background-color: neu-1;
+}
+
+.container.loggedIn {
+  align-items: flex-start;
 }
 
 .sideMenuSpace {

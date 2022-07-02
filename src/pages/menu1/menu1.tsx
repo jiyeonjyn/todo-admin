@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './menu1.module.css';
 import Header from '../../components/header/header';
 

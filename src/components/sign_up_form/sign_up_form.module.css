@@ -16,6 +16,10 @@
   color: black;
 }
 
+.inputWrapper {
+  position: relative;
+}
+
 .input {
   width: 350px;
   height: 40px;
@@ -35,12 +39,23 @@
   box-shadow: inset 4px 4px 4px neu-2, inset -4px -4px 4px white;
 }
 
-.pwLink {
+.dupBtn,
+.checkIcon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  font-size: 12px;
   color: black;
-  font-size: 15px;
-  margin-top: 25px;
-  border-bottom: 1px solid gray;
-  line-height: 2;
+  padding: 3px 0;
+  cursor: pointer;
+}
+
+.checkIcon {
+  width: 24px;
+  padding: 5px;
+  padding-bottom: 2px;
+  cursor: default;
 }
 
 .message {

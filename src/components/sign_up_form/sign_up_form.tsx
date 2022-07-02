@@ -1,27 +1,29 @@
 import { motion } from 'framer-motion';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
-import useAuthSignupMutation from '../../hooks/useAuthSignupMutation';
-import { SignUpUser } from '../../types/forms';
+import useAuthSignupMutation from '../../hooks/auth/useAuthSignupMutation';
+import { checkEmail, checkUserId } from '../../service/auth_service';
+import { UserSignUpForm } from '../../types/forms';
 import styles from './sign_up_form.module.css';
 
-const SignUpForm = () => {
-  const navigate = useNavigate();
+type Props = {
+  toggleSignUp: () => void;
+};
 
+const SignUpForm = ({ toggleSignUp }: Props) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<SignUpUser>();
+  } = useForm<UserSignUpForm>();
 
   const { mutate } = useAuthSignupMutation();
-  const onSubmit: SubmitHandler<SignUpUser> = (data) => {
+  const onSubmit: SubmitHandler<UserSignUpForm> = (data) => {
     mutate(data, {
-      onSuccess: (data: any) => {
-        console.log(data);
-        navigate('/');
+      onSuccess: () => {
+        alert('가입되었습니다.');
+        toggleSignUp();
       },
-      onError: (error: any) => console.log(error),
+      onError: (error) => console.log(error),
     });
   };
 
@@ -36,7 +38,15 @@ const SignUpForm = () => {
         className={styles.input}
         type="text"
         placeholder="ID"
-        {...register('userId', { required: true })}
+        {...register('userId', {
+          required: true,
+          maxLength: {
+            value: 30,
+            message: '아이디는 30자 이내로 입력해주세요.',
+          },
+          validate: async (v) =>
+            (await checkUserId(v)) || '중복된 아이디입니다.',
+        })}
       />
       <input
         className={styles.input}
@@ -48,7 +58,10 @@ const SignUpForm = () => {
         className={styles.input}
         type="text"
         placeholder="NAME"
-        {...register('userName', { required: true })}
+        {...register('userName', {
+          required: true,
+          maxLength: { value: 10, message: '이름은 10자 이내로 입력해주세요.' },
+        })}
       />
       <input
         className={styles.input}
@@ -66,14 +79,24 @@ const SignUpForm = () => {
         placeholder="EMAIL"
         {...register('userEmail', {
           required: true,
+          maxLength: {
+            value: 100,
+            message: '이메일은 100자 이내로 입력해주세요.',
+          },
           pattern: {
             value: /\S+@\S+\.\S+/,
             message: '올바른 이메일 형식이 아닙니다.',
           },
+          validate: async (v) =>
+            (await checkEmail(v)) || '중복된 이메일입니다.',
         })}
       />
+
       <span className={styles.message}>
-        {errors.userBirth?.message || errors.userEmail?.message}
+        {errors.userId?.message ||
+          errors.userName?.message ||
+          errors.userBirth?.message ||
+          errors.userEmail?.message}
       </span>
       <button className={styles.button}>SIGN UP</button>
     </motion.form>

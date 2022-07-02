@@ -14,8 +14,7 @@
   height: 4px;
   border-radius: 1px;
   background-color: white;
-  transition: top 0.2s, bottom 0.2s,
-    transform 0.3s cubic-bezier(0.585, -0.6, 0.43, 1.65), visibility 0s 0.3s;
+  transition: top 0.2s, bottom 0.2s, transform 0.3s, visibility 0s 0.2s;
 }
 
 .ico.ico-bars > div:nth-child(2) {
@@ -29,11 +28,11 @@
   transform-origin: bottom left;
 }
 
-.ico.ico-bars:hover div:first-child {
+.ico.ico-bars > div:first-child {
   top: -2px;
 }
 
-.ico.ico-bars:hover div:last-child {
+.ico.ico-bars > div:last-child {
   bottom: -2px;
 }
 
@@ -62,11 +61,11 @@
   user-select: none;
   position: fixed;
   top: 0;
-  left: 0px;
+  left: 0;
   width: 50px;
   height: 100%;
-  background-color: #4b70e2;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 2px 2px;
+  background-image: linear-gradient(to right, #ac99f2, #a7baf2);
+  box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.1);
   transition: width 0.2s;
   color: white;
 }
@@ -76,19 +75,30 @@
 }
 
 .side-bar .toggle-side-bar-btn {
-  margin: 10px 0 0 10px;
+  margin: 16px 0 0 10px;
 }
 
-.side-bar .menu {
+.side-bar .menu,
+.side-bar .logOutBtn {
   position: absolute;
   top: 50px;
   right: 100%;
-  transition: right 0.3s;
 }
 
-.side-bar.active .menu {
-  /* 사이드바가 활성화 되면 메뉴가 노출 된다. */
+.side-bar .logOutBtn {
+  cursor: pointer;
+  transition: color 0.3s;
+  white-space: nowrap;
+}
+
+.side-bar.active .menu,
+.side-bar.active .logOutBtn {
   left: 20%;
+}
+
+.side-bar.active .logOutBtn {
+  top: auto;
+  bottom: 40px;
 }
 
 .side-bar .menu > ul > li > ul {
@@ -98,10 +108,11 @@
 .side-bar .menu li > a {
   display: block;
   white-space: nowrap;
-  transition: color 0.5s;
+  transition: color 0.3s;
   padding: 5px;
 }
 
-.side-bar .menu li > a:hover {
+.side-bar .menu li > a:hover,
+.logOutBtn:hover {
   color: black;
 }

@@ -1,4 +1,4 @@
-@value neu-1, neu-2, white, transition, purple, black from '../../common/styles.css';
+@value neu-1, neu-2, white, purple, black from '../../common/styles.css';
 
 .container {
   position: relative;
@@ -12,11 +12,6 @@
   display: flex;
 }
 
-.space {
-  height: 100%;
-  width: 400px;
-}
-
 .switchBox {
   padding: 25px;
   display: flex;
@@ -26,19 +21,11 @@
   height: 100%;
   width: 400px;
   padding: 50px;
-  z-index: 100;
-  transition: transition;
   background-color: neu-1;
   overflow: hidden;
   box-shadow: 4px 4px 10px neu-2, -4px -4px 10px white;
-  position: absolute;
-  top: 0;
-  right: 0;
-  transition: right 0.5s;
-}
-
-.switchBox.goLeft {
-  right: 600px;
+  position: relative;
+  z-index: 100;
 }
 
 .title {

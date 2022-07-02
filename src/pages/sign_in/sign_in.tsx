@@ -6,14 +6,12 @@ import styles from './sign_in.module.css';
 
 const SignIn = () => {
   const [isSignUp, setIsSignUp] = useState(true);
-  const toggleIsSignUp = () => setIsSignUp((currVal) => !currVal);
+  const toggleSignUp = () => setIsSignUp((currVal) => !currVal);
 
   return (
     <section className={styles.container}>
       {!isSignUp && <SignInForm />}
-      <motion.section
-        className={`${styles.switchBox} ${isSignUp && styles.goLeft}`}
-      >
+      <motion.section className={styles.switchBox} layout>
         <h2 className={styles.title}>
           {isSignUp ? 'Welcome Back !' : 'Hello Friend !'}
         </h2>
@@ -22,12 +20,11 @@ const SignIn = () => {
             ? 'To keep connected with us please login with your personal info'
             : 'Enter your personal details and start journey with us'}
         </p>
-        <button className={styles.button} onClick={toggleIsSignUp}>
+        <button className={styles.button} onClick={toggleSignUp}>
           {isSignUp ? 'SIGN IN' : 'SIGN UP'}
         </button>
       </motion.section>
-      <div className={styles.space}></div>
-      {isSignUp && <SignUpForm />}
+      {isSignUp && <SignUpForm toggleSignUp={toggleSignUp} />}
     </section>
   );
 };
