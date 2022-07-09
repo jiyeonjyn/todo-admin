@@ -4,6 +4,7 @@ import { httpClient } from './httpClient';
 export type LocalUser = {
   userId: string;
   refreshToken: string;
+  accessToken: string;
 };
 
 export const logIn = (user: LocalUser, accessToken: string) => {

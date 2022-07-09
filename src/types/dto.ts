@@ -18,8 +18,6 @@ export type ResponseSignInDto = {
 };
 
 export type TodoCMSMemberDto = {
-  a: string;
-  b: string;
-  c: string;
-  d: string;
+  userid: string;
+  username: string;
 };

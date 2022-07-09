@@ -2,3 +2,11 @@
   width: 100%;
   background-color: #f4f5f7;
 }
+
+.table {
+  text-align: center;
+}
+
+.table > * > * > * {
+  padding: 0 5px;
+}

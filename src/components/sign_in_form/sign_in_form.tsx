@@ -19,6 +19,7 @@ const SignInForm = () => {
         const user: LocalUser = {
           userId: data.userId,
           refreshToken: data.refreshToken,
+          accessToken: data.accessToken,
         };
         logIn(user, data.accessToken);
         navigate('/menu1');
