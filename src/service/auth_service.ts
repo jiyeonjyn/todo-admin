@@ -35,3 +35,6 @@ export const checkEmail = async (userEmail: string) =>
   await httpClient
     .get('auth/email', { params: { userEmail } })
     .then((response) => !response.data);
+
+export const refreshToken = async () =>
+  await httpClient.post('auth/refreshToken').then(console.log);

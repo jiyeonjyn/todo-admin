@@ -7,7 +7,7 @@ import { TodoCMSMemberDto } from '../../types/dto';
 const Menu1 = () => {
   const [array, setArray] = useState<TodoCMSMemberDto[]>([]);
 
-  const onClick = async () => postAdminTest().then((data) => setArray(data));
+  const onClick = async () => postAdminTest().then(console.log);
 
   return (
     <section className={styles.container}>
