@@ -52,10 +52,10 @@ const SideMenu = () => {
             <Link to="menu1">메뉴 1</Link>
           </li>
           <li>
-            <Link to="/">메뉴 2</Link>
+            <Link to="menu2">메뉴 2</Link>
           </li>
           <li>
-            <Link to="/">메뉴 3</Link>
+            <Link to="menu3">메뉴 3</Link>
           </li>
         </ul>
       </nav>
