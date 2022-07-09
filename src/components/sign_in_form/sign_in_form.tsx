@@ -23,7 +23,7 @@ const SignInForm = () => {
         logIn(user, data.accessToken);
         navigate('/menu1');
       },
-      onError: (error) => console.log(error),
+      onError: (error) => alert(error.message),
     });
   };
 

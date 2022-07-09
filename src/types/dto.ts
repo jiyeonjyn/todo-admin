@@ -16,3 +16,10 @@ export type ResponseSignInDto = {
   accessToken: string;
   refreshToken: string;
 };
+
+export type TodoCMSMemberDto = {
+  a: string;
+  b: string;
+  c: string;
+  d: string;
+};
