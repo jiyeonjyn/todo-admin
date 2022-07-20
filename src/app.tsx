@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import styles from './app.module.css';
 import SideMenu from './components/side_menu/side_menu';
-import Menu1 from './pages/menu1/menu1';
-import Menu2 from './pages/menu2/menu2';
-import SignIn from './pages/sign_in/sign_in';
+import Welcome from './pages/welcome/welcome';
 import { httpClient } from './service/httpClient';
+import { sideMenuCon } from './contents';
+import Dashboard from './pages/dashboard/dashboard';
 
 function App() {
   useLocation();
@@ -24,13 +24,11 @@ function App() {
       {user.userId && <div className={styles.sideMenuSpace}></div>}
       {user.userId && <SideMenu />}
       <Routes>
-        <Route path="/" element={user.userId ? <Menu1 /> : <SignIn />} />
-        {user.userId && (
-          <>
-            <Route path="menu1" element={<Menu1 />} />
-            <Route path="menu2" element={<Menu2 />} />
-          </>
-        )}
+        <Route path="/" element={user.userId ? <Dashboard /> : <Welcome />} />
+        {user.userId &&
+          sideMenuCon.map((item) => (
+            <Route path={item.path} element={item.component()} />
+          ))}
       </Routes>
     </section>
   );

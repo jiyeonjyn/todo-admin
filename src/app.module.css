@@ -1,7 +1,8 @@
-@value neu-1 from 'common/styles.css';
+@value neu-1, bg from 'common/styles.css';
 
 .container {
   min-height: 100vh;
+  min-width: 1040px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9,7 +10,9 @@
 }
 
 .container.loggedIn {
+  min-width: unset;
   align-items: flex-start;
+  background-color: bg;
 }
 
 .sideMenuSpace {

@@ -8,7 +8,8 @@ export const postAdminUsers = async () => {
       .get('admin/users/0')
       .then((response) => response.data.result);
   } catch (error: any) {
-    console.log(error);
+    console.log(error.response);
+    // console.log(httpClient.defaults.headers);
     error.response.status === 403 && refreshToken();
   }
   return response;

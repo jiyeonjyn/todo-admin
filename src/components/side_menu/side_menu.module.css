@@ -1,12 +1,12 @@
 /* 햄버거 버튼 */
-.ico.ico-bars {
+.toggleIcon {
   display: inline-block;
   width: 30px;
   height: 20px;
   position: relative;
   cursor: pointer;
 }
-.ico.ico-bars > div {
+.toggleIcon > div {
   position: absolute;
   top: 0;
   left: 0;
@@ -17,46 +17,46 @@
   transition: top 0.2s, bottom 0.2s, transform 0.3s, visibility 0s 0.2s;
 }
 
-.ico.ico-bars > div:nth-child(2) {
+.toggleIcon > div:nth-child(2) {
   top: 50%;
   transform: translateY(-50%);
 }
 
-.ico.ico-bars > div:last-child {
+.toggleIcon > div:last-child {
   top: auto;
   bottom: 0;
   transform-origin: bottom left;
 }
 
-.ico.ico-bars > div:first-child {
+.toggleIcon > div:first-child {
   top: -2px;
 }
 
-.ico.ico-bars > div:last-child {
+.toggleIcon > div:last-child {
   bottom: -2px;
 }
 
-.ico.ico-bars > div:first-child {
+.toggleIcon > div:first-child {
   transform-origin: top left;
 }
 
-.ico.ico-bars.active div:first-child {
+.toggleIcon.active div:first-child {
   top: -2px;
   transform: rotate(45deg);
 }
 
-.ico.ico-bars.active div:last-child {
+.toggleIcon.active div:last-child {
   bottom: -2px;
   transform: rotate(-45deg);
 }
 
-.ico.ico-bars.active div:nth-child(2) {
+.toggleIcon.active div:nth-child(2) {
   visibility: hidden;
   transition: visibility 0s 0s;
 }
 
 /* 사이드 바 */
-.side-bar {
+.container {
   z-index: 3;
   user-select: none;
   position: fixed;
@@ -66,53 +66,63 @@
   height: 100%;
   background-image: linear-gradient(to right, #ac99f2, #a7baf2);
   box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.1);
-  transition: width 0.2s;
+  transition: width 0.3s;
   color: white;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
-.side-bar.active {
+.container.active {
   width: 200px;
 }
 
-.side-bar .toggle-side-bar-btn {
+.container .toggleIcon {
   margin: 16px 0 0 10px;
 }
 
-.side-bar .menu,
-.side-bar .logOutBtn {
-  position: absolute;
-  top: 50px;
-  right: 100%;
+.container .menu {
+  width: 80%;
+  margin-left: 30px;
+  padding: 20px 0;
+  visibility: hidden;
+  transition: visibility 0.1s;
 }
 
-.side-bar .logOutBtn {
+.container.active .menu {
+  visibility: visible;
+  transition: visibility 0.2s;
+}
+
+.container .logOutBtn {
+  position: absolute;
   cursor: pointer;
   transition: color 0.3s;
-  white-space: nowrap;
-}
-
-.side-bar.active .menu,
-.side-bar.active .logOutBtn {
-  left: 20%;
-}
-
-.side-bar.active .logOutBtn {
-  top: auto;
+  padding: 5px;
   bottom: 40px;
+  left: 40px;
+  visibility: hidden;
+  transition: visibility 0.1s;
 }
 
-.side-bar .menu > ul > li > ul {
-  padding-left: 20px;
+.container.active .logOutBtn {
+  visibility: visible;
+  transition: visibility 0.2s;
 }
 
-.side-bar .menu li > a {
-  display: block;
-  white-space: nowrap;
+.menuItem a {
+  display: inline-flex;
+  align-items: center;
   transition: color 0.3s;
   padding: 5px;
+  margin-bottom: 3px;
 }
 
-.side-bar .menu li > a:hover,
+.menuItem a:hover,
 .logOutBtn:hover {
   color: black;
+}
+
+.menuItem span {
+  margin-left: 7px;
+  line-height: 16px;
 }

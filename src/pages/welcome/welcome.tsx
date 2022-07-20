@@ -1,16 +1,16 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import SignInForm from '../../components/sign_in_form/sign_in_form';
-import SignUpForm from '../../components/sign_up_form/sign_up_form';
-import styles from './sign_in.module.css';
+import SignIn from '../../components/sign_in/sign_in';
+import SignUp from '../../components/sign_up/sign_up';
+import styles from './welcome.module.css';
 
-const SignIn = () => {
+const Welcome = () => {
   const [isSignUp, setIsSignUp] = useState(true);
   const toggleSignUp = () => setIsSignUp((currVal) => !currVal);
 
   return (
     <section className={styles.container}>
-      {!isSignUp && <SignInForm />}
+      {!isSignUp && <SignIn />}
       <motion.section className={styles.switchBox} layout>
         <h2 className={styles.title}>
           {isSignUp ? 'Welcome Back !' : 'Hello Friend !'}
@@ -24,9 +24,9 @@ const SignIn = () => {
           {isSignUp ? 'SIGN IN' : 'SIGN UP'}
         </button>
       </motion.section>
-      {isSignUp && <SignUpForm toggleSignUp={toggleSignUp} />}
+      {isSignUp && <SignUp toggleSignUp={toggleSignUp} />}
     </section>
   );
 };
 
-export default SignIn;
+export default Welcome;

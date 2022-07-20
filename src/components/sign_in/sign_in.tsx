@@ -3,16 +3,16 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import useAuthSigninMutation from '../../hooks/auth/useAuthSigninMutation';
 import { LocalUser, logIn } from '../../service/auth_service';
-import { UserSignInForm } from '../../types/forms';
-import styles from './sign_in_form.module.css';
+import { SignInForm } from '../../types/forms';
+import styles from './sign_in.module.css';
 
-const SignInForm = () => {
+const SignIn = () => {
   const navigate = useNavigate();
 
-  const { register, handleSubmit } = useForm<UserSignInForm>();
+  const { register, handleSubmit } = useForm<SignInForm>();
 
   const { mutate } = useAuthSigninMutation();
-  const onSubmit: SubmitHandler<UserSignInForm> = (data) => {
+  const onSubmit: SubmitHandler<SignInForm> = (data) => {
     mutate(data, {
       onSuccess: (response) => {
         const data = response.data;
@@ -53,4 +53,4 @@ const SignInForm = () => {
   );
 };
 
-export default SignInForm;
+export default SignIn;
