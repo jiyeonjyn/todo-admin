@@ -1,13 +1,14 @@
 import { motion } from 'framer-motion';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
+import { isLoggedInState } from '../../atoms';
 import useAuthSigninMutation from '../../hooks/auth/useAuthSigninMutation';
 import { LocalUser, logIn } from '../../service/auth_service';
 import { SignInForm } from '../../types/forms';
 import styles from './sign_in.module.css';
 
 const SignIn = () => {
-  const navigate = useNavigate();
+  const setIsLoggedIn = useSetRecoilState(isLoggedInState);
 
   const { register, handleSubmit } = useForm<SignInForm>();
 
@@ -22,7 +23,7 @@ const SignIn = () => {
           accessToken: data.accessToken,
         };
         logIn(user, data.accessToken);
-        navigate('/menu1');
+        setIsLoggedIn(true);
       },
       onError: (error) => alert(error.message),
     });

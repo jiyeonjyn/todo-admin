@@ -3,8 +3,12 @@ import Header from '../../components/header/header';
 import { postAdminUsers } from '../../service/admin_service';
 import { SyntheticEvent, useRef, useState } from 'react';
 import { TodoCMSMemberDto } from '../../types/dto';
+import useGoHome from '../../hooks/useGoHome';
 
 const User = () => {
+  const user = JSON.parse(window.localStorage.getItem('user') || '{}');
+  useGoHome(!!user.userId);
+
   const [array, setArray] = useState<TodoCMSMemberDto[]>([]);
   const formRef = useRef<HTMLFormElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);

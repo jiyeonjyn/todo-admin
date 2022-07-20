@@ -1,12 +1,14 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { sideMenuCon } from '../../contents';
 import { logOut } from '../../service/auth_service';
 import styles from './side_menu.module.css';
 import { RiDashboardLine } from 'react-icons/ri';
+import { useSetRecoilState } from 'recoil';
+import { isLoggedInState } from '../../atoms';
 
 const SideMenu = () => {
-  const navigate = useNavigate();
+  const setIsLoggedIn = useSetRecoilState(isLoggedInState);
 
   const [isActive, setIsActive] = useState(false);
   const toggleIsActive = () => setIsActive((prev) => !prev);
@@ -21,7 +23,7 @@ const SideMenu = () => {
   );
 
   const handleLogOut = async () => {
-    (await logOut()) && navigate('/');
+    (await logOut()) && setIsLoggedIn(false);
   };
 
   useEffect(() => {
