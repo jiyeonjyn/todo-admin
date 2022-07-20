@@ -17,7 +17,7 @@ export type ResponseSignInDto = {
   refreshToken: string;
 };
 
-export type TodoCMSMemberDto = {
+export type ResponseUsersDto = {
   userid: string;
   username: string;
-};
+}[];

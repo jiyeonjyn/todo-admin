@@ -1,4 +1,4 @@
-@value neu-1, neu-2, white, purple, gray, black from '../../common/styles.css';
+@value neu-1, neu-2, gray-100, primary, gray, black, white from '../../common/colors.css';
 
 .container {
   background-color: neu-1;
@@ -29,11 +29,11 @@
   background-color: neu-1;
   transition: 0.25s ease;
   border-radius: 8px;
-  box-shadow: inset 2px 2px 4px neu-2, inset -2px -2px 4px white;
+  box-shadow: inset 2px 2px 4px neu-2, inset -2px -2px 4px gray-100;
 }
 
 .input:focus {
-  box-shadow: inset 4px 4px 4px neu-2, inset -4px -4px 4px white;
+  box-shadow: inset 4px 4px 4px neu-2, inset -4px -4px 4px gray-100;
 }
 
 .pwLink {
@@ -53,8 +53,8 @@
   font-size: 14px;
   letter-spacing: 1.15px;
   border: 0;
-  background-color: purple;
+  background-color: primary;
   color: white;
-  box-shadow: 8px 8px 16px neu-2, -8px -8px 16px white;
+  box-shadow: 8px 8px 16px neu-2, -8px -8px 16px gray-100;
   cursor: pointer;
 }

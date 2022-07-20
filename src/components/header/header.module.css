@@ -1,7 +1,10 @@
+@value black, gray-200 from '../../common/colors.css';
+
 .header {
   padding: 15px 30px;
-  background-color: #fff;
-  box-shadow: 0px 2px 4px rgba(48, 51, 107, 0.08);
+  box-shadow: 0 1px 2px 0 rgb(31 45 61 / 7%);
+  border-bottom: 1px solid gray-200;
+  color: black;
 }
 
 .title {

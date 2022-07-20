@@ -1,0 +1,78 @@
+/* 컬러 팔레트 */
+#color_palette {
+  neu-1: #ecf0f3;
+  neu-2: #d1d9e6;
+  fo-1: #ac99f2;
+  fo-2: #a7baf2;
+
+  primary: #1eb7ff;
+  secondary: #8493a5;
+  success: #1bb934;
+  info: #33ae9a;
+  warning: #f7bf47;
+  danger: #ed1c24;
+  light: #f8f9fa;
+  dark: #353c48;
+
+  blue: #1eb7ff;
+  indigo: #6610f2;
+  purple: #ca8eff;
+  pink: #e83e8c;
+  red: #ed1c24;
+  orange: #f27212;
+  yellow: #f7bf47;
+  green: #1bb934;
+  teal: #20c997;
+  cyan: #33ae9a;
+  white: #fff;
+  black: #181818;
+  gray: #868e96;
+  gray-dark: #3f4651;
+  gray-100: #f8f9fa;
+  gray-200: #ecf0f3;
+  gray-300: #dee2e6;
+  gray-400: #ced4da;
+  gray-500: #adb5bd;
+  gray-600: #868e96;
+  gray-700: #5d636d;
+  gray-800: #3f4651;
+  gray-900: #353c48;
+}
+
+@value neu-1: #ecf0f3;
+@value neu-2: #d1d9e6;
+@value fo-1: #ac99f2;
+@value fo-2: #a7baf2;
+
+@value primary: #1eb7ff;
+@value secondary: #8493a5;
+@value success: #1bb934;
+@value info: #33ae9a;
+@value warning: #f7bf47;
+@value danger: #ed1c24;
+@value light: #f8f9fa;
+@value dark: #353c48;
+
+@value blue: #1eb7ff;
+@value indigo: #6610f2;
+@value purple: #ca8eff;
+@value pink: #e83e8c;
+@value red: #ed1c24;
+@value orange: #f27212;
+@value yellow: #f7bf47;
+@value green: #1bb934;
+@value teal: #20c997;
+@value cyan: #33ae9a;
+@value white: #fff;
+@value black: #181818;
+@value gray: #868e96;
+@value gray-dark: #3f4651;
+@value gray-100: #f8f9fa;
+@value gray-200: #ecf0f3;
+@value gray-300: #dee2e6;
+@value gray-400: #ced4da;
+@value gray-500: #adb5bd;
+@value gray-600: #868e96;
+@value gray-700: #5d636d;
+@value gray-800: #3f4651;
+@value gray-900: #353c48;

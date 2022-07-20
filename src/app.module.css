@@ -1,18 +1,20 @@
-@value neu-1, bg from 'common/styles.css';
+@value gray-200, white from 'common/colors.css';
 
 .container {
+  height: 100%;
   min-height: 100vh;
   min-width: 1040px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: neu-1;
+  background-color: gray-200;
 }
 
 .container.loggedIn {
   min-width: unset;
   align-items: flex-start;
-  background-color: bg;
+  justify-content: flex-start;
+  background-color: white;
 }
 
 .sideMenuSpace {

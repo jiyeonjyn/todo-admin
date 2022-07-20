@@ -1,4 +1,4 @@
-@value neu-1, neu-2, white, purple, black from '../../common/styles.css';
+@value neu-2, gray-100, gray-200, primary, black, white from '../../common/colors.css';
 
 .container {
   position: relative;
@@ -6,10 +6,11 @@
   min-width: 1000px;
   min-height: 600px;
   height: 600px;
-  box-shadow: 10px 10px 10px neu-2, -10px -10px 10px white;
+  box-shadow: 10px 10px 10px neu-2, -10px -10px 10px gray-100;
   border-radius: 12px;
   overflow: hidden;
   display: flex;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .switchBox {
@@ -21,9 +22,9 @@
   height: 100%;
   width: 400px;
   padding: 50px;
-  background-color: neu-1;
+  background-color: gray-200;
   overflow: hidden;
-  box-shadow: 4px 4px 10px neu-2, -4px -4px 10px white;
+  box-shadow: 4px 4px 10px neu-2, -4px -4px 10px gray-100;
   position: relative;
   z-index: 100;
 }
@@ -51,8 +52,8 @@
   font-size: 14px;
   letter-spacing: 1.15px;
   border: 0;
-  background-color: purple;
+  background-color: primary;
   color: white;
-  box-shadow: 8px 8px 16px neu-2, -8px -8px 16px white;
+  box-shadow: 8px 8px 16px neu-2, -8px -8px 16px gray-100;
   cursor: pointer;
 }

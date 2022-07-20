@@ -11,3 +11,9 @@
 - Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 <br>
+
+## API 호출하기
+
+### GET
+
+### POST/PUT/DELETE
