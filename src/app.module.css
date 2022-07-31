@@ -15,9 +15,11 @@
   align-items: flex-start;
   justify-content: flex-start;
   background-color: white;
+  min-width: 760px;
 }
 
 .sideMenuSpace {
   width: 50px;
+  min-width: 50px;
   height: 100%;
 }

@@ -9,11 +9,16 @@ const api = async (roleNumber: number) =>
     .then((response) => response.data.result);
 
 const useUsersQuery = (
+  isLoggedIn: boolean,
   roleNumber: number
 ): UseQueryResult<ResponseUsersDto, AxiosError> =>
-  useQuery(['users', roleNumber], () => api(roleNumber), {
-    retry: false,
-    onError: (error: AxiosError) => console.log(error.message),
-  });
+  useQuery(
+    ['users', { isLoggedIn, roleNumber }],
+    () => (isLoggedIn ? api(roleNumber) : undefined),
+    {
+      retry: false,
+      onError: (error: AxiosError) => console.log(error.message),
+    }
+  );
 
 export default useUsersQuery;

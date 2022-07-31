@@ -4,16 +4,20 @@ import { useSetRecoilState } from 'recoil';
 import { isLoggedInState } from '../../atoms';
 import useAuthSigninMutation from '../../hooks/auth/useAuthSigninMutation';
 import { LocalUser, logIn } from '../../service/auth_service';
-import { SignInForm } from '../../types/forms';
 import styles from './sign_in.module.css';
+
+type Form = {
+  userId: string;
+  userPw: string;
+};
 
 const SignIn = () => {
   const setIsLoggedIn = useSetRecoilState(isLoggedInState);
 
-  const { register, handleSubmit } = useForm<SignInForm>();
+  const { register, handleSubmit } = useForm<Form>();
 
   const { mutate } = useAuthSigninMutation();
-  const onSubmit: SubmitHandler<SignInForm> = (data) => {
+  const onSubmit: SubmitHandler<Form> = (data) => {
     mutate(data, {
       onSuccess: (response) => {
         const data = response.data;

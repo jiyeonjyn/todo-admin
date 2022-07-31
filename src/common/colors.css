@@ -30,7 +30,7 @@
   gray-dark: #3f4651;
   gray-100: #f8f9fa;
   gray-200: #ecf0f3;
-  gray-300: #dee2e6;
+  gray-300: #dde2e7;
   gray-400: #ced4da;
   gray-500: #adb5bd;
   gray-600: #868e96;
@@ -69,7 +69,7 @@
 @value gray-dark: #3f4651;
 @value gray-100: #f8f9fa;
 @value gray-200: #ecf0f3;
-@value gray-300: #dee2e6;
+@value gray-300: #dde2e7;
 @value gray-400: #ced4da;
 @value gray-500: #adb5bd;
 @value gray-600: #868e96;

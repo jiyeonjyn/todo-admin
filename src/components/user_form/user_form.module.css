@@ -1,0 +1,22 @@
+@value gray-600 from '../../common/colors.css';
+
+.input {
+  text-align: center;
+  border: 1px solid gray-600;
+  font: inherit;
+  background-color: transparent;
+  width: 70%;
+  padding: 1px 0;
+}
+
+.icon,
+.icon2 {
+  display: flex;
+  align-items: center;
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.icon2 {
+  transform: scale(1.3);
+}

@@ -2,11 +2,18 @@ import { motion } from 'framer-motion';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import useAuthSignupMutation from '../../hooks/auth/useAuthSignupMutation';
 import { checkEmail, checkUserId } from '../../service/auth_service';
-import { SignUpForm } from '../../types/forms';
 import styles from './sign_up.module.css';
 
 type Props = {
   toggleSignUp: () => void;
+};
+
+type Form = {
+  userId: string;
+  userPw: string;
+  userName: string;
+  userBirth: string;
+  userEmail: string;
 };
 
 const SignUp = ({ toggleSignUp }: Props) => {
@@ -14,10 +21,10 @@ const SignUp = ({ toggleSignUp }: Props) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<SignUpForm>();
+  } = useForm<Form>();
 
   const { mutate } = useAuthSignupMutation();
-  const onSubmit: SubmitHandler<SignUpForm> = (data) => {
+  const onSubmit: SubmitHandler<Form> = (data) => {
     mutate(data, {
       onSuccess: () => {
         alert('가입되었습니다.');

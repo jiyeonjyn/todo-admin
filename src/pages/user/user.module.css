@@ -1,11 +1,12 @@
 .container {
-  width: 100%;
+  flex: 1 1 auto;
   height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
 }
 
 .main {
-  padding: 20px;
+  padding: 20px 40px;
   flex: 1 1 auto;
 }

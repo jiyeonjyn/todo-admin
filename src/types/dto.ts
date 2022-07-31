@@ -17,7 +17,12 @@ export type ResponseSignInDto = {
   refreshToken: string;
 };
 
-export type ResponseUsersDto = {
+export type UserData = {
+  id: number;
   userid: string;
   username: string;
-}[];
+  userbirth: string;
+  useremail: string;
+};
+
+export type ResponseUsersDto = UserData[];

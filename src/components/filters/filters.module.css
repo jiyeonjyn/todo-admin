@@ -1,0 +1,124 @@
+@value gray-100, gray-200, gray-300, gray-400, gray-600, gray-700, gray-800, white from '../../common/colors.css';
+
+.container {
+  overflow-x: scroll;
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 12px;
+  color: gray-700;
+  font-weight: 500;
+}
+
+.filters {
+  width: max-content;
+  display: flex;
+  align-items: center;
+}
+
+.addBtn,
+.filter {
+  border: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  background-color: gray-200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 20px;
+  padding: 5px 5px 5px 10px;
+  margin-right: 5px;
+  cursor: default;
+}
+
+.addBtn {
+  cursor: pointer;
+  border: 1.4px dashed gray-400;
+  background-color: white;
+  padding: 3.5px 5px 3.5px 10px;
+}
+
+.addBtn:hover {
+  border: 1.4px dashed gray-600;
+}
+
+.icon {
+  line-height: 0;
+  transform: scale(1.1);
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+/* modal */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.7);
+  opacity: 0;
+  z-index: 999;
+}
+
+.modalContainer {
+  width: 500px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: gray-100;
+  border: 1px solid gray-300;
+  border-radius: 5px;
+  box-shadow: 0 16px 30px rgba(31, 45, 61, 0.18);
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  padding: 10px 0;
+}
+
+.resetBtn {
+  align-self: flex-end;
+  cursor: pointer;
+  padding: 3px 0;
+  margin-right: 20px;
+  color: gray-800;
+}
+
+.scrollWrapper {
+  overflow-x: scroll;
+  padding: 5px 0;
+}
+
+.modalContainer .filters {
+  padding: 0 15px;
+}
+
+.listWrapper {
+  padding-right: 15px;
+  padding-bottom: 5px;
+  font-size: 14px;
+}
+
+.list {
+  background-color: white;
+  border: 1px solid gray-300;
+  border-left: 0;
+}
+
+.item {
+  padding: 10px;
+  border-bottom: 0.5px solid white;
+  cursor: pointer;
+}
+
+.item:last-child {
+  border-bottom: 0;
+}
+
+.item:hover {
+  background-color: gray-200;
+}
+
+.item.selected {
+  background-color: gray-300;
+}
