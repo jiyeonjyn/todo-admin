@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { sideMenuCon } from '../../contents';
 import { logOut } from '../../service/auth_service';
@@ -6,32 +6,20 @@ import styles from './side_menu.module.css';
 import { RiDashboardLine } from 'react-icons/ri';
 import { useSetRecoilState } from 'recoil';
 import { isLoggedInState } from '../../atoms';
+import { useOnClickOutside } from '../../hooks/useOnClickOutside';
 
 const SideMenu = () => {
   const setIsLoggedIn = useSetRecoilState(isLoggedInState);
 
   const [isActive, setIsActive] = useState(false);
-  const toggleIsActive = () => setIsActive((prev) => !prev);
+  const toggleIsActive = () => setIsActive((currVal) => !currVal);
 
-  // 폼 비활성화
   const containerRef = useRef<HTMLDivElement>(null);
-  const handleClickOutside = useCallback(
-    ({ target }: any) => {
-      isActive && !containerRef.current?.contains(target) && setIsActive(false);
-    },
-    [isActive]
-  );
+  useOnClickOutside(containerRef, () => setIsActive(false));
 
   const handleLogOut = async () => {
     (await logOut()) && setIsLoggedIn(false);
   };
-
-  useEffect(() => {
-    document.addEventListener('click', handleClickOutside);
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-    };
-  }, [handleClickOutside]);
 
   return (
     <div

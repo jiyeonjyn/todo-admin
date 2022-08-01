@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useReducer, useState } from 'react';
 import styles from './filters.module.css';
 import { TiDelete } from 'react-icons/ti';
 import { FiPlus } from 'react-icons/fi';
@@ -11,27 +11,38 @@ type Props = {
   listFilters: FilterItem[];
 };
 
+type SelectedFilters = { [key: string]: boolean };
+type FilterAction = { type: string; target: string };
+
+const filterReducer = (
+  prevState: SelectedFilters,
+  action: FilterAction
+): SelectedFilters => {
+  switch (action.type) {
+    case 'SELECT':
+      return { ...prevState, [action.target]: true };
+    case 'DESELECT':
+      const newState = { ...prevState };
+      delete newState[action.target];
+      return newState;
+    case 'RESET':
+      return {};
+    default:
+      return prevState;
+  }
+};
+
 const Filters = ({ listFilters }: Props) => {
-  const [selected, setSelected] = useState<{ [key: string]: boolean }>({});
   const [isOpen, setIsOpen] = useState(false);
+  const [selected, filterDispatch] = useReducer(filterReducer, {});
 
-  const selectFilter = useCallback(
-    (filterValue: string) =>
-      setSelected((currVal) => ({ ...currVal, [filterValue]: true })),
-    []
-  );
+  const selectFilter = (filter: string) =>
+    filterDispatch({ type: 'SELECT', target: filter });
 
-  const deleteFilter = useCallback(
-    (filterValue: string) =>
-      setSelected((currVal) => {
-        const newVal = { ...currVal };
-        delete newVal[filterValue];
-        return newVal;
-      }),
-    []
-  );
+  const deselectFilter = (filter: string) =>
+    filterDispatch({ type: 'DESELECT', target: filter });
 
-  const resetAll = () => setSelected({});
+  const resetAll = () => filterDispatch({ type: 'RESET', target: '' });
 
   return (
     <section className={styles.container}>
@@ -45,7 +56,7 @@ const Filters = ({ listFilters }: Props) => {
         {Object.keys(selected).map((item) => (
           <p className={styles.filter} key={item}>
             {listFilters.find((filter) => filter.value === item)?.name}
-            <span className={styles.icon} onClick={() => deleteFilter(item)}>
+            <span className={styles.icon} onClick={() => deselectFilter(item)}>
               <TiDelete />
             </span>
           </p>
@@ -58,7 +69,7 @@ const Filters = ({ listFilters }: Props) => {
             selected={selected}
             resetAll={resetAll}
             selectFilter={selectFilter}
-            deleteFilter={deleteFilter}
+            deselectFilter={deselectFilter}
             onClose={() => setIsOpen(false)}
           />
         )}

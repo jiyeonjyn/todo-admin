@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useOnClickOutside } from '../../hooks/useOnClickOutside';
@@ -30,6 +30,8 @@ const SearchBar = ({ searchFilters }: Props) => {
     },
   });
   const [isOpened, setIsOpened] = useState(false);
+  const toggleIsOpened = () => setIsOpened((currVal) => !currVal);
+
   const selectRef = useRef<HTMLDivElement>(null);
   useOnClickOutside(selectRef, () => setIsOpened(false));
 
@@ -43,10 +45,13 @@ const SearchBar = ({ searchFilters }: Props) => {
     register('filter');
   }, [register]);
 
-  const onSubmit: SubmitHandler<Form> = (data) =>
-    searchFilters
-      ? navigate(`${pathname}?filter=${data.filter}&query=${data.query}`)
-      : navigate(`${pathname}?query=${data.query}`);
+  const onSubmit: SubmitHandler<Form> = useCallback(
+    (data) =>
+      searchFilters
+        ? navigate(`${pathname}?filter=${data.filter}&query=${data.query}`)
+        : navigate(`${pathname}?query=${data.query}`),
+    [searchFilters, pathname, navigate]
+  );
 
   return (
     <form className={styles.container} onSubmit={handleSubmit(onSubmit)}>
@@ -55,7 +60,7 @@ const SearchBar = ({ searchFilters }: Props) => {
           <div
             ref={selectRef}
             className={styles.select}
-            onClick={() => setIsOpened((curr) => !curr)}
+            onClick={toggleIsOpened}
           >
             <span>
               {

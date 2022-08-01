@@ -4,7 +4,13 @@ import styles from './user_list.module.css';
 import { IoMdTrash } from 'react-icons/io';
 import { MdModeEditOutline } from 'react-icons/md';
 import { FiPlus } from 'react-icons/fi';
-import { ChangeEventHandler, useEffect, useRef, useState } from 'react';
+import {
+  ChangeEventHandler,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import UserForm from '../user_form/user_form';
 import { useRecoilValue } from 'recoil';
 import { isLoggedInState } from '../../atoms';
@@ -20,8 +26,8 @@ type Form = {
 
 const UserList = () => {
   const isLoggedIn = useRecoilValue(isLoggedInState);
-  const [edit, setEdit] = useState<EditState>({});
-  const [add, setAdd] = useState(false);
+  const [isEditMode, setIsEditMode] = useState<EditState>({});
+  const [isAddMode, setIsAddMode] = useState(false);
 
   const { data } = useUsersQuery(isLoggedIn, 0);
 
@@ -32,36 +38,40 @@ const UserList = () => {
 
   useEffect(() => {
     if (!data?.length) return;
-    setEdit((currVal) => {
+    setIsEditMode((currVal) => {
       let newVal: EditState = {};
-      data?.map((user) => (newVal[user.id] = currVal[user.id] ?? false));
+      data.map((user) => (newVal[user.id] = currVal[user.id] ?? false));
       return newVal;
     });
   }, [data]);
 
-  const handleCheck: ChangeEventHandler<HTMLInputElement> = (e) => {
-    e.currentTarget.checked
-      ? setValue('idArr', Object.keys(edit))
-      : setValue('idArr', []);
-  };
+  const handleCheck: ChangeEventHandler<HTMLInputElement> = useCallback(
+    (e) => {
+      e.currentTarget.checked
+        ? setValue('idArr', Object.keys(isEditMode))
+        : setValue('idArr', []);
+    },
+    [setValue, isEditMode]
+  );
 
   const checkRef = useRef<HTMLInputElement>(null);
   useEffect(() => {
     if (!checkRef.current) return;
     checkRef.current.checked =
-      idArr.length && idArr.length === Object.keys(edit).length ? true : false;
-  }, [edit, idArr.length]);
+      idArr.length && idArr.length === Object.keys(isEditMode).length
+        ? true
+        : false;
+  }, [isEditMode, idArr.length]);
 
-  const setEditTrue = (id: number) =>
-    setEdit((currVal) => ({ ...currVal, [id]: true }));
+  const toggleIsEditMode = useCallback((id: number) => {
+    setIsEditMode((currVal) => ({ ...currVal, [id]: !currVal[id] }));
+  }, []);
+  const toggleIsAddMode = () => setIsAddMode((currVal) => !currVal);
 
-  const setEditFalse = (id: number) =>
-    setEdit((currVal) => ({ ...currVal, [id]: false }));
-
-  const handleDelete = (userid: string) => {
+  const handleDelete = useCallback((userid: string) => {
     if (!window.confirm('삭제하시겠습니까?')) return;
     deleteUser(userid);
-  };
+  }, []);
 
   return (
     <section className={styles.table}>
@@ -93,12 +103,12 @@ const UserList = () => {
                 value={user.id}
                 {...register('idArr', { required: true })}
               />
-              {edit[user.id] ? (
+              {isEditMode[user.id] ? (
                 <>
                   <span className={styles.item}>{user.id}</span>
                   <UserForm
                     user={user}
-                    onCancel={() => setEditFalse(user.id)}
+                    onCancel={() => toggleIsEditMode(user.id)}
                   />
                 </>
               ) : (
@@ -110,7 +120,7 @@ const UserList = () => {
                   <span className={styles.item}>{user.useremail}</span>
                   <span
                     className={styles.icon}
-                    onClick={() => setEditTrue(user.id)}
+                    onClick={() => toggleIsEditMode(user.id)}
                   >
                     <MdModeEditOutline />
                   </span>
@@ -128,15 +138,15 @@ const UserList = () => {
           <div className={styles.empty}>사용자가 없습니다.</div>
         )}
       </ul>
-      <div className={`${add ? styles.addForm : styles.addBtn}`}>
-        {add ? (
+      <div className={`${isAddMode ? styles.addForm : styles.addBtn}`}>
+        {isAddMode ? (
           <>
             <span className={styles.item}></span>
             <span className={styles.item}></span>
-            <UserForm onCancel={() => setAdd(false)} />
+            <UserForm onCancel={toggleIsAddMode} />
           </>
         ) : (
-          <span onClick={() => setAdd(true)}>
+          <span onClick={toggleIsAddMode}>
             <FiPlus />
           </span>
         )}
